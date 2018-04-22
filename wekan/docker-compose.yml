@@ -29,7 +29,7 @@ services:
       - wekandb
     environment:
       - MONGO_URL=mongodb://wekandb:27017/wekan
-      - ROOT_URL=http://wekan
+      - ROOT_URL=https://<host-fqdn|host-ip-addr>
       #- MAIL_URL=smtp://user:password@mailserver.example.jp:25/
       #- MAIL_FROM='Example Wekan Support <support@example.jp>'
     restart: always  
