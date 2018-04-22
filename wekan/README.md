@@ -1,6 +1,7 @@
-Sorry, under construction...
+### Sorry, under construction...
+- - -
 
-### create wekan user
+#### create wekan user
 
 ``` shell-session
 useradd \
@@ -13,7 +14,14 @@ passwd wekan
 su - wekan
 ```
 
-### start containers
+####  Nginx proxy
+
+``` shell-session
+mkdir -p /var/opt/docker/wekan/wekanproxy/{conf.d,ssl}
+```
+
+
+#### start containers
 
 ``` shell-session
 mkdir ~wekan/docker

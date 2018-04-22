@@ -21,7 +21,7 @@ services:
 
   wekan:
     image: quay.io/wekan/wekan
-    cotainer_name: wekan-app
+    container_name: wekan-app
     restart: always
     networks:
       - wekan-tier
@@ -51,18 +51,18 @@ services:
       - /var/opt/docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
       - /var/opt/docker/nginx/ssl:/etc/nginx/ssl
 
-  # コンテナ停止後も永続化するデータ領域を定義する。      
-  # $ dcoker volume ls
-  # ---
-  # local  wekan-app_wekan-db
-  # local  wekan-app_wekna-db-dump
-  volumes:
-    wekan-db:
-      driver: local
-    wekan-db-dump:
-      driver: local
+# コンテナ停止後も永続化するデータ領域を定義する。      
+# $ dcoker volume ls
+# ---
+# local  wekan-app_wekan-db
+# local  wekan-app_wekna-db-dump
+volumes:
+  wekan-db:
+    driver: local
+  wekan-db-dump:
+    driver: local
 
-  # ユーザー定義ネットワークを作成する。
-  networks:
-    wekan-tier:
-      driver: bridge
+# ユーザー定義ネットワークを作成する。
+networks:
+  wekan-tier:
+    driver: bridge

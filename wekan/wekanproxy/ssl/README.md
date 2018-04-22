@@ -16,7 +16,7 @@ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
 
 #### Generate dhparam file.
 
-This takes a few minutes. Please be patient.
+This takes a long times. Please be patient.
 ```
 openssl dhparam -out dh_param.pem 4096
 ```
