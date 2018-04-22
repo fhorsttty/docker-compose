@@ -47,6 +47,7 @@ services:
       - wekandb
     # ホスト側で作成したnginx用コンフィグを指定する。
     volumes:
+      - /var/opt/docker/nginx/nginx.conf:/etc/nginx/nginx.conf
       - /var/opt/docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
       - /var/opt/docker/nginx/cert:/etc/nginx/cert
 
