@@ -9,7 +9,7 @@ services:
     # ユーザー定義ネットワークの名前を指定する。
     networks:
       - wekan-tier
-    # コンテナが公開するポートを指定する。
+    # コンテナが待ち受けるポートを指定する。
     expose:
       - 27017
     # format => voulume-data:container-name:rw
@@ -29,7 +29,7 @@ services:
       - wekandb
     environment:
       - MONGO_URL=mongodb://wekandb:27017/wekan
-      - ROOT_URL=https://<fqdn|host-ip-addr>
+      - ROOT_URL=http://wekan
       #- MAIL_URL=smtp://user:password@mailserver.example.jp:25/
       #- MAIL_FROM='Example Wekan Support <support@example.jp>'
     restart: always  
@@ -47,9 +47,9 @@ services:
       - wekandb
     # ホスト側で作成したnginx用コンフィグを指定する。
     volumes:
-      - /home/wekan/docker/wekan/wekanproxy/nginx.conf:/etc/nginx/nginx.conf
-      - /home/wekan/docker/wekan/wekanproxy/conf.d/default.conf:/etc/nginx/conf.d/default.conf
-      - /home/wekan/docker/wekan/wekanproxy/ssl:/etc/nginx/ssl
+      - /home/wekan/wekanproxy/nginx.conf:/etc/nginx/nginx.conf
+      - /home/wekan/wekanproxy/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - /home/wekan/wekanproxy/ssl:/etc/nginx/ssl
 
 # コンテナ停止後も永続化するデータ領域を定義する。      
 # $ dcoker volume ls
