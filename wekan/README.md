@@ -14,7 +14,10 @@ su - wekan
 ```
 
 ### start containers
+
+``` shell-session
 mkdir ~wekan/docker
 touch ~wekan/docker/docker-compose.yml
 docker-compose up -d
 docker-compose logs
+```
