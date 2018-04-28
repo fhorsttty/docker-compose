@@ -16,6 +16,8 @@ services:
     volumes:
       - wekan-db:/data/db
       - wekan-db-dump:/dump
+      #- /home/wekan/wekandb/db:/data/db
+      #- /home/wekan/wekandb/dump:/dump
     command: mongod --smallfiles --oplogSize 128
     restart: always
 
@@ -28,8 +30,9 @@ services:
     depends_on:
       - wekandb
     environment:
+      # Change your own URL :)
+      - ROOT_URL=https://wekan.example.co.jp
       - MONGO_URL=mongodb://wekandb:27017/wekan
-      - ROOT_URL=https://<host-fqdn|host-ip-addr>
       #- MAIL_URL=smtp://user:password@mailserver.example.jp:25/
       #- MAIL_FROM='Example Wekan Support <support@example.jp>'
     restart: always  
