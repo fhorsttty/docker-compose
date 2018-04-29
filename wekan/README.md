@@ -1,11 +1,10 @@
 # Sorry, under construction...
-- - -
 
 > Note:
-> We suggests that The docker engine activates `user namespaces` function.
+> We suggests that the docker engine activates `user namespaces` function.
 
 
-## create wekan user
+## Create wekan user
 
 ``` shell-session
 useradd \
@@ -19,15 +18,15 @@ su - wekan
 ```
 
 
-##  Set up Nginx proxy
+##  Set up nginx proxy
 
+
+Edit `docker-compose.yml` according to your environment. 
 
 ``` shell-session
 git clone https://github.com/fhorsttty/docker-compose-examples.git
 cp -R docker-compose-examples/wekan .
 ```
-
-Edit `docker-compose.yml` according to your environment. 
 
 
 Change directory to `wekanproxy/ssl/`.
@@ -44,7 +43,7 @@ This `ssl` directory needs 3 files.
 - dh_param.pem
 
 
-### Generate private-key and Self-Signed certification.
+### Generate private-key and self-signed certification.
 
 ``` shell-session
 openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
@@ -55,13 +54,15 @@ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
 
 ### Generate dhparam file.
 
+
 This takes a long times. Please be patient.
 ```
 openssl dhparam -out dh_param.pem 4096
 ```
 
 
-## start containers
+## Start containers
+
 
 ``` shell-session
 cd ~wekan
