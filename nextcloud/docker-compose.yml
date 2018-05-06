@@ -8,6 +8,7 @@ services:
       - nextcloud-tier
     volumes:
       - nextcloud-db:/var/lib/mysql
+      - nextcloud-db-dump:/dump
     environment:
       - MYSQL_ROOT_PASSWORD=<hi*mi*tsu>
       - MYSQL_PASSWORD=<hi*mi*tsu>
@@ -30,6 +31,8 @@ services:
 
 volumes:
   nextcloud-db:
+    driver: local
+  nextcloud-db-dump:
     driver: local
   nextcloud-app:
     driver: local
