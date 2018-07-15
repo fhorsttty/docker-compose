@@ -146,6 +146,7 @@ exit
 
 
 ``` shell-session
+# host-os
 docker-compose stop wekandb
 docker-compose ps
 docker-compose up -d
