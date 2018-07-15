@@ -1,5 +1,3 @@
-# Sorry, under construction...
-
 > Note:
 > We suggests that the docker engine activates `user namespaces` function.
 
@@ -68,4 +66,88 @@ openssl dhparam -out dh_param.pem 4096
 cd ~wekan
 docker-compose up -d
 docker-compose logs
+```
+
+
+## Backup and upgrade Wekan
+
+
+Stop all containers and start the container of wekandb.
+
+``` shell-session
+# host-os
+cd ~wekan
+docker-compose stop
+docker-compose up -d wekandb
+docker exec -it wekan-db bash
+```
+
+
+Dump the backup data of mongodb.
+
+``` shell-session
+# container
+cd /
+rm -rf /dump/*
+mongodump -o /dump
+ls -la /dump
+exit
+```
+
+
+Copy the backup data to local directory.
+
+``` shell-session
+docker cp wekan-db:/dump wekandb/
+ls -la wekandb/dump/wekan
+docker-compose stop wekandb
+```
+
+
+Edit the version of wekan in `docker-compose.yml`.
+Upgrade and start containers.
+
+``` shell-session
+docker-compose up -d
+```
+
+
+## Restore Wekan
+
+Remove the container and the volume of mongodb.
+
+``` shell-session
+# host-os
+cd ~wekan
+docker-compose stop wekandb
+docker ps -a | grep wekan-db
+docker rm <wekan-db-container-id>
+docker volume ls
+docker volume rm wekan_wekan-db
+```
+
+
+``` shell-session
+# host-os
+docker-compose up -d wekandb
+docker-compose ps
+docker cp wekandb/dump wekan-db:/data
+docker exec -it wekan-db bash
+```
+
+
+``` shell-session
+# container
+cd /data
+mongorestore --drop --db wekan dump/wekan
+rm -rf dump/*
+exit
+```
+
+
+``` shell-session
+docker-compose stop wekandb
+docker-compose ps
+docker-compose up -d
+rm -rf wekandb/dump/*
 ```
