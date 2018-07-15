@@ -8,9 +8,9 @@
 
 ``` shell-session
 useradd \
-> -d /home/wekan
-> -m
-> -s /bin/bash
+> -d /home/wekan \
+> -m \
+> -s /bin/bash \
 > wekan
 usermod -aG docker wekan    # wekanユーザーをdockerグループに追加する。
 passwd wekan
