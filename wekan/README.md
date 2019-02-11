@@ -10,6 +10,7 @@ useradd \
 > -m \
 > -s /bin/bash \
 > wekan
+chmod 755 /home/wekan
 usermod -aG docker wekan    # wekanユーザーをdockerグループに追加する。
 passwd wekan
 su - wekan
@@ -23,7 +24,7 @@ Edit `docker-compose.yml` according to your environment.
 
 ``` shell-session
 git clone https://github.com/fhorsttty/docker-compose-examples.git
-cp -R docker-compose-examples/wekan .
+cp -R docker-compose-examples/wekan/* .
 ```
 
 
@@ -47,6 +48,7 @@ This `ssl` directory needs 3 files.
 openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
 > -keyout private.key \
 > -out self_signed.crt
+chmod 644 private.key
 ```
 
 
