@@ -57,7 +57,7 @@ chmod 644 private.key
 
 This takes a long times. Please be patient.
 ```
-openssl dhparam -out dh_param.pem 4096
+openssl dhparam -out dh_param.pem 2048
 ```
 
 
